@@ -6,11 +6,10 @@
 ## Frontend — Autenticación (SauceDemo / Shopify)
 
 ### Casos positivos (happy path)
-
 | ID | Caso | Precondición | Pasos | Resultado esperado | Prioridad | Auto |
 |---|---|---|---|---|---|---|
-| TC-01 | Login exitoso | Usuario registrado | 1. Ir a /account/login 2. Ingresar email y contraseña válidos 3. Enviar | Redirige a /account y muestra la cuenta del cliente | Alta | ✅ |
-| TC-04 | Compra E2E | Usuario logueado | 1. Agregar 2 productos al carrito 2. Ir al carrito 3. Checkout 4. Llenar envío 5. Pagar con tarjeta de prueba | Pantalla de confirmación del pedido ("Thank you") | Alta | ✅ |
+| TC-01 | Login exitoso (sesión válida) | Usuario registrado con sesión guardada (storageState) | 1. Cargar la sesión del usuario de prueba 2. Navegar a /account | Muestra "Account Details and Order History" sin redirigir al login | Alta | ✅ |
+| TC-04 | Compra E2E | Usuario con sesión válida | 1. Agregar 2 productos distintos al carrito 2. Validar carrito vía /cart.js 3. Checkout: llenar envío (o usar dirección guardada) 4. Pagar con tarjeta de prueba (Bogus Gateway) | Pantalla de confirmación del pedido ("Thank you") | Alta | ✅ |
 | TC-05 | Registro de cuenta nueva | Email no registrado | 1. Ir a crear cuenta 2. Llenar nombre, email, contraseña 3. Enviar | Cuenta creada y sesión iniciada | Alta | ✍️ |
 | TC-06 | Logout | Usuario logueado | 1. Clic en cerrar sesión | Sesión cerrada; /account redirige a login | Media | ✍️ |
 
@@ -18,7 +17,7 @@
 
 | ID | Caso | Precondición | Pasos | Resultado esperado | Prioridad | Auto |
 |---|---|---|---|---|---|---|
-| TC-02 | Credenciales inválidas | — | Login con email/contraseña incorrectos | Mensaje de error visible; permanece en login; no expone si el email existe | Alta | ✅ (Bonus) |
+| TC-02 | Credenciales inválidas | — | Login con email/contraseña incorrectos | No otorga acceso: permanece en login y no se crea sesión (sin enlace Log Out). El texto del mensaje no es automatizable por hCaptcha; se verifica manualmente | Alta | ✅ (Bonus) |
 | TC-03 | Campos vacíos | — | Enviar el formulario sin datos | No inicia sesión; validación de campos requeridos | Alta | ✅ |
 | TC-07 | Email con formato inválido | — | Login con "correo-sin-arroba" | Validación de formato; no envía la petición | Media | ✍️ |
 | TC-08 | Contraseña correcta, email incorrecto | Usuario registrado | Login combinando datos de usuarios distintos | Error genérico de credenciales | Media | ✍️ |
