@@ -3,7 +3,7 @@
 Suite de pruebas automatizadas (frontend + backend) para el flujo de autenticación y gestión de usuarios, con su estrategia de pruebas documentada.
 
 **Autor:** Kevin Meneses González
-**Estado de la suite:** ✅ 7/7 tests passing (4 UI + 3 API)
+**Estado de la suite:**  7/7 tests passing (4 UI + 3 API)
 
 ## Estructura del proyecto
 
